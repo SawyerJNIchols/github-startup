@@ -369,7 +369,11 @@ figcaption {
 
 .entry-date {
   margin-bottom: 0.4rem;
-  font-size: 0.85rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* Next moves and links */
