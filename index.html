@@ -3,75 +3,250 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI+Design Studio Command Center</title>
+  <meta name="description" content="Research dashboard for Describe It, Discover It: a conversational music discovery concept where listeners correct the AI and choose how far to stray from their usual taste." />
+  <title>Describe It, Discover It &#183; Research Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<!--
-  THIS IS YOUR DASHBOARD. GitHub Pages serves this file.
-  Replace the placeholder text below with the real content from your
-  AI+Design Studio Command Center (Canvas: Project 2, Step 2).
-  KEEP OR TRIM: delete any <section> you did not build - all seven or a
-  subset is fine. Beginnings-level content is fine; this is the on-ramp,
-  not Project 5. Make it yours; do not leave it looking like a template.
--->
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
   <header class="site-header">
-    <p class="eyebrow">AI + Design Studio &#183; Command Center</p>
-    <h1 id="project-title">Your Project Title</h1>
-    <p class="tagline">One-line summary of what you are investigating &#8212; and your name.</p>
+    <p class="eyebrow">AI + Design Studio &#183; Research Dashboard</p>
+    <h1>Describe It, Discover It</h1>
+    <p class="tagline">Conversational music discovery: describe a mood or a moment, then steer what the AI gives you back.</p>
+    <p class="byline">By <span class="todo">Name to add</span></p>
+
+    <nav aria-label="Sections">
+      <ul class="nav-list">
+        <li><a href="#question-h">Question</a></li>
+        <li><a href="#sources-h">Sources</a></li>
+        <li><a href="#images-h">Prototype</a></li>
+        <li><a href="#log-h">Log</a></li>
+        <li><a href="#next-h">Next moves</a></li>
+        <li><a href="#links-h">Workspace</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="container">
+  <main id="main" class="container">
 
-    <!-- Project Identity Card -->
-    <section aria-labelledby="identity-h">
-      <h2 id="identity-h">Project Identity Card</h2>
-      <p>Title, curiosity statement, short summary, audience / context, and possible final direction(s).</p>
+    <!-- Research question -->
+    <section class="question" aria-labelledby="question-h">
+      <h2 id="question-h">Research question</h2>
+      <p class="question-text">How can an AI music app interpret subjective descriptions of mood and moments, and give listeners simple ways to correct and refine its suggestions without technical music vocabulary?</p>
+
+      <div class="facts">
+        <div class="fact">
+          <h3>Curiosity statement</h3>
+          <p>How could an AI-powered music app turn descriptions of moods, activities, and personal experiences into music discoveries that feel relevant but not predictable?</p>
+        </div>
+        <div class="fact">
+          <h3>Why it matters</h3>
+          <p>Listeners in a think-aloud study described feeling confined to their &#8220;own bubble&#8221; or &#8220;comfort zone&#8221; by recommendation algorithms. Major apps now take text prompts, so the design question has shifted from whether AI can make a playlist to how people stay in control of what it gives them.</p>
+        </div>
+        <div class="fact">
+          <h3>Audience</h3>
+          <p>Everyday listeners who feel stuck hearing the same recommendations. They can describe how music feels but don&#8217;t know technical terms like genres or tempo.</p>
+        </div>
+        <div class="fact">
+          <h3>How my question moved</h3>
+          <p>From &#8220;Can AI understand a mood?&#8221; to &#8220;How can a listener fix it when AI misunderstands a mood, and how far from their usual taste do they want to go?&#8221;</p>
+        </div>
+      </div>
+
+      <h3>Possible final outcomes</h3>
+      <ol class="outcomes">
+        <li>A conversational discovery prototype where users refine results through chat.</li>
+        <li>A soundtrack builder for personal moments, with energy and progression controls.</li>
+        <li>A discovery-map interface with a familiar-to-unfamiliar slider.</li>
+      </ol>
     </section>
 
-    <!-- Inquiry Brief -->
-    <section aria-labelledby="inquiry-h">
-      <h2 id="inquiry-h">Inquiry Brief</h2>
-      <p>Your research question, why it matters, what you need to learn, and 2&#8211;3 possible final outcomes.</p>
-    </section>
-
-    <!-- Source Starter List -->
+    <!-- Sources and notes -->
     <section aria-labelledby="sources-h">
-      <h2 id="sources-h">Source Starter List</h2>
-      <ul>
-        <li>Source 1 &#8212; title, creator, link, type, why it matters</li>
-        <li>Source 2 &#8212; title, creator, link, type, why it matters</li>
-        <li>Source 3 &#8212; optional</li>
+      <h2 id="sources-h">Sources and notes</h2>
+      <p class="section-intro">Five sources. Each one has what I found, what I doubt about it, and what it means for the design.</p>
+
+      <div class="source-grid">
+        <article class="source">
+          <p class="pill">Company announcement</p>
+          <h3><a href="https://newsroom.spotify.com/2025-12-10/spotify-prompted-playlists-algorithm-gustav-soderstrom">&#8220;You&#8217;re in Control: Spotify Lets You Steer the Algorithm&#8221;</a></h3>
+          <p class="source-meta">Gustav S&#246;derstr&#246;m, Spotify Newsroom &#183; December 10, 2025</p>
+          <dl>
+            <dt>Finding</dt>
+            <dd>Spotify already lets listeners describe what they want in their own words, refine the playlist by editing the prompt, and see why each song was picked.</dd>
+            <dt>Caveat</dt>
+            <dd>It is promotional. It says the feature understands subjective moods but never shows how well. It launched as a beta for Premium users in New Zealand, and TechCrunch coverage adds that users hit limits after roughly 20&#8211;30 prompts.</dd>
+            <dt>Implication</dt>
+            <dd>&#8220;Type a vibe, get a playlist&#8221; isn&#8217;t enough to stand out. The app has to focus on correction and on controlling how far suggestions stray from my usual taste.</dd>
+          </dl>
+        </article>
+
+        <article class="source">
+          <p class="pill">Help page</p>
+          <h3><a href="https://support.google.com/youtubemusic/answer/17090260?hl=en">&#8220;Ask Music for music and podcasts&#8221;</a></h3>
+          <p class="source-meta">YouTube Music Help</p>
+          <dl>
+            <dt>Finding</dt>
+            <dd>Ask Music turns a mood or activity prompt into a custom mix that you can keep adjusting with &#8220;Adjust or ask again&#8221; and suggestion bubbles.</dd>
+            <dt>Caveat</dt>
+            <dd>It is limited to paid Premium members on mobile in certain countries, so most classmates probably haven&#8217;t used it.</dd>
+            <dt>Implication</dt>
+            <dd>YouTube labels AI mixes (&#8220;Mix created by AI&#8221;), which answers part of my question about whether AI playlists should be marked.</dd>
+          </dl>
+        </article>
+
+        <article class="source">
+          <p class="pill">Research paper</p>
+          <h3><a href="https://doi.org/10.1145/3511047.3536409">&#8220;Haven&#8217;t I Just Listened to This?: Exploring Diversity in Music Recommendations&#8221;</a></h3>
+          <p class="source-meta">Antonela Tommasel, Juan Manuel Rodriguez, and Daniela Godoy &#183; UMAP &#8217;22</p>
+          <dl>
+            <dt>Finding</dt>
+            <dd>Music recommenders can trap listeners in filter bubbles that narrow what they hear.</dd>
+            <dt>Caveat</dt>
+            <dd>The evaluation is described as &#8220;preliminary.&#8221; Researchers using Deezer data found that automated recommendations don&#8217;t systematically limit choices; the effect depends on the listener.</dd>
+            <dt>Implication</dt>
+            <dd>Not everyone feels stuck, so the &#8220;how far from my taste&#8221; control should be optional, not forced.</dd>
+          </dl>
+        </article>
+
+        <article class="source">
+          <p class="pill">Research paper</p>
+          <h3><a href="https://ceur-ws.org/Vol-4045/paper7.pdf">&#8220;User-Driven Fairness in Music Recommendations&#8221;</a> <span class="file-type">(PDF)</span></h3>
+          <p class="source-meta">Shah Noor Khan, Jesse Nieuwkoop, and Judith Masthoff &#183; MuRS 2025, Utrecht University</p>
+          <dl>
+            <dt>Finding</dt>
+            <dd>Giving listeners sliders made them feel more in control. Genre diversity was the control participants cared about most.</dd>
+            <dt>Caveat</dt>
+            <dd>42 sessions in the Netherlands, one short interaction, and no comparison group without sliders. It supports my idea but doesn&#8217;t prove it.</dd>
+            <dt>Implication</dt>
+            <dd>Include a simple, visible taste slider instead of hiding controls.</dd>
+          </dl>
+        </article>
+
+        <article class="source">
+          <p class="pill">Hands-on review</p>
+          <h3>&#8220;I let Apple Music&#8217;s new AI tool curate my playlists for 24 hours&#8221;</h3>
+          <p class="source-meta">Jada Jones, ZDNET <span class="todo">Link to add</span></p>
+          <dl>
+            <dt>Finding</dt>
+            <dd>AI playlists work for background listening, but they miss the personal context and memories behind songs.</dd>
+            <dt>Caveat</dt>
+            <dd>One reviewer&#8217;s opinion, not a study. A lead to test, not a fact.</dd>
+            <dt>Implication</dt>
+            <dd>The app should ask about the listener&#8217;s moment instead of assuming what a mood means.</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- Prototype and reference images -->
+    <section aria-labelledby="images-h">
+      <h2 id="images-h">Prototype and reference images</h2>
+      <p class="section-intro">Screens from my Pathways prototype, built in Figma Make. Pathways starts from one song and branches outward.</p>
+
+      <div class="gallery">
+        <figure>
+          <img src="images/home-screen.png" width="440" height="956"
+               alt="Dark music app home screen. Under the heading Home are a large After hours card showing a coastal road at night with light trails, a Pathways card that reads One song. Endless directions., a row of three albums titled On repeat, a mini player showing Shooting Star by Nate Sib, and a tab bar." />
+          <figcaption>Home, with the Pathways entry point.</figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/pathways-empty-state.png" width="440" height="956"
+               alt="Pathways screen before any song is added. A mostly black screen with the title Pathways, a row that reads Add a song to get started, and a rounded text field at the bottom asking What do you want to discover?" />
+          <figcaption>Pathways, empty state.</figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/pathways-five-song-path.png" width="440" height="956"
+               alt="Pathways screen showing five songs joined by thin white branching lines with node dots. Shooting Star by Nate Sib branches to The Peace by Underscores and movinglikeazombie by ericdoa, and The Peace branches to Dumbest Girl Alive by 100 gecs and Faceshopping by SOPHIE. A purple glow rises from the bottom above a Keep exploring button." />
+          <figcaption>Pathways, a five-song path.</figcaption>
+        </figure>
+
+        <figure class="wide">
+          <img src="images/figma-make-frames.webp" width="2000" height="821"
+               alt="Overview of about a dozen prototype frames laid out in two rows. The top row has a Keep exploring sheet listing songs from the pathway and a Search results sheet. The bottom row has five versions of the pathway screen, each with a different song selected and a detail sheet offering Play, Add to Library and Explore from this song, followed by five More to discover sheets for other songs." />
+          <figcaption>All frames in Figma Make: Keep exploring, search, song detail sheets, and More to discover.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Notes and experiment log -->
+    <section aria-labelledby="log-h">
+      <h2 id="log-h">Notes and experiment log</h2>
+      <p class="section-intro">Oldest first.</p>
+
+      <ol class="timeline">
+        <li>
+          <p class="entry-date"><span class="todo">Date to add</span></p>
+          <h3>Info Interaction #1: Spotify&#8217;s announcement</h3>
+          <p>I used AI to turn the Spotify announcement into questions about subjective moods, correction, listening history, and trust. The main thing I took away is that a company describing a feature is not the same as evidence that people find it useful.</p>
+          <p>This is where my focus started to move toward how listeners correct the AI. I mapped it in a five-stage diagram: starting inquiry, source observation, evidence check, proposed design focus, next test.</p>
+        </li>
+
+        <li>
+          <p class="entry-date"><span class="todo">Date to add</span></p>
+          <h3>Progress Report #2: Frames in Figma Make</h3>
+          <p>I made my Figma frames using Figma Make and had it make them all interactive.</p>
+          <dl>
+            <dt>What I learned</dt>
+            <dd>You have to be very direct about what you want when using Figma Make.</dd>
+            <dt>What worked</dt>
+            <dd>Having Figma Make implement my features. Nothing has gone wrong yet.</dd>
+            <dt>Status</dt>
+            <dd>A week ahead of my plan.</dd>
+          </dl>
+        </li>
+
+        <li>
+          <p class="entry-date"><span class="todo">Date to add</span></p>
+          <h3>Progress Report #3: Off the roadmap</h3>
+          <p>No new report this week because I didn&#8217;t really follow my roadmap. I already had the vision for the frames in my mind, so I drew them out and went to work in Figma Make.</p>
+        </li>
+
+        <li>
+          <p class="entry-date"><span class="todo">Date to add</span></p>
+          <h3>Info Interaction #4: Checking the AI summary against the article</h3>
+          <p>I asked Perplexity to generate eight questions about the Spotify announcement and to write a summary, then compared the summary with the article.</p>
+          <dl>
+            <dt>Confirmed</dt>
+            <dd>Prompt editing, song explanations, and the use of listening history are all in the article.</dd>
+            <dt>Doubted</dt>
+            <dd>The article never shows how well the feature understands subjective moods. It only says it can.</dd>
+            <dt>What changed</dt>
+            <dd>Typing in your own words isn&#8217;t new anymore. My concept should stand apart on correcting misunderstood moods and on a listener-controlled path from familiar sounds toward unfamiliar ones.</dd>
+          </dl>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Next moves -->
+    <section aria-labelledby="next-h">
+      <h2 id="next-h">Next moves</h2>
+      <ul class="next-list">
+        <li>Test Spotify&#8217;s Prompted Playlist myself with &#8220;reflective but not sad&#8221; and screenshot the results.</li>
+        <li>Sketch two correction flows for a mismatched result and ask classmates which is clearer.</li>
+        <li>Ask in interviews whether people actually feel stuck in their recommendations.</li>
+        <li>Sketch two slider versions, &#8220;familiar &#8596; new&#8221; and &#8220;same genre &#8596; different genre,&#8221; and test which is clearer.</li>
+        <li>Design a follow-up question the app asks, like &#8220;What&#8217;s this playlist for?&#8221;, and test it with users.</li>
+        <li>Decide how the app labels AI-started playlists while still letting listeners make them their own.</li>
       </ul>
     </section>
 
-    <!-- Project Brief / Weekly Roadmap -->
-    <section aria-labelledby="roadmap-h">
-      <h2 id="roadmap-h">Project Brief / Weekly Roadmap</h2>
-      <p>Weeks 5&#8211;11: goal, activities, tools, output, and success indicator for each week.</p>
-    </section>
-
-    <!-- Prompt Log -->
-    <section aria-labelledby="prompts-h">
-      <h2 id="prompts-h">Prompt Log</h2>
-      <p>Each entry: the prompt used, model / tool, output summary, and what changed afterward.</p>
-    </section>
-
-    <!-- Experiment Log -->
-    <section aria-labelledby="experiments-h">
-      <h2 id="experiments-h">Experiment Log</h2>
-      <p>Each experiment: what you tried, notes, what worked, what failed, and the next step.</p>
-    </section>
-
-    <!-- Links / Workspace Board -->
+    <!-- Workspace links -->
     <section aria-labelledby="links-h">
-      <h2 id="links-h">Links / Workspace Board</h2>
-      <ul>
-        <li>Milanote / Notion / Figma board</li>
-        <li>AI tools used</li>
-        <li>Repo / site link</li>
-        <li>Working files (Figma, code, assets)</li>
-      </ul>
+      <h2 id="links-h">Workspace links</h2>
+      <dl class="links">
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/SawyerJNIchols/github-startup">github.com/SawyerJNIchols/github-startup</a></dd>
+        <dt>Milanote</dt>
+        <dd>Research notes and Command Center board. <span class="todo">Link to add</span></dd>
+        <dt>Figma</dt>
+        <dd>Pathways prototype in Figma Make. <span class="todo">Link to add</span></dd>
+        <dt>AI tools used</dt>
+        <dd>Claude for prompting, Perplexity for source questions and summaries, Figma Make for the prototype.</dd>
+      </dl>
     </section>
 
   </main>
