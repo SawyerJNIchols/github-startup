@@ -19,7 +19,7 @@
 
   <!-- Floating section nav: rises from the bottom of the screen after you scroll -->
   <nav class="island" aria-label="Sections">
-    <ul class="nav-list">
+    <ul class="nav-list" role="list">
       <li><a href="#question-h">Question</a></li>
       <li><a href="#sources-h">Sources</a></li>
       <li><a href="#images-h">Prototype</a></li>
@@ -29,12 +29,15 @@
     </ul>
   </nav>
 
-  <main id="main" class="container">
+  <main id="main">
 
     <!-- Research question -->
     <section class="question" aria-labelledby="question-h">
-      <h2 id="question-h">Research question</h2>
-      <p class="question-text">How can an AI music app interpret subjective descriptions of mood and moments, and give listeners simple ways to correct and refine its suggestions without technical music vocabulary?</p>
+      <header class="section-head">
+        <p class="eyebrow">Research question</p>
+        <h2 id="question-h">Describe it. Then correct it.</h2>
+      </header>
+      <p class="lead">How can an AI music app <strong>interpret subjective descriptions of mood and moments</strong>, and give listeners <strong>simple ways to correct and refine its suggestions</strong> without technical music vocabulary?</p>
 
       <div class="facts">
         <div class="fact">
@@ -55,8 +58,8 @@
         </div>
       </div>
 
-      <h3>Possible final outcomes</h3>
-      <ol class="outcomes">
+      <h3 class="sub-head">Possible final outcomes</h3>
+      <ol class="outcomes" role="list">
         <li>A conversational discovery prototype where users refine results through chat.</li>
         <li>A soundtrack builder for personal moments, with energy and progression controls.</li>
         <li>A discovery-map interface with a familiar-to-unfamiliar slider.</li>
@@ -65,8 +68,11 @@
 
     <!-- Sources and notes -->
     <section aria-labelledby="sources-h">
-      <h2 id="sources-h">Sources and notes</h2>
-      <p class="section-intro">Five sources. Each one has what I found, what I doubt about it, and what it means for the design.</p>
+      <header class="section-head">
+        <p class="eyebrow">Sources and notes</p>
+        <h2 id="sources-h">Five sources. Read skeptically.</h2>
+      </header>
+      <p class="lead">Each one has <strong>what I found</strong>, <strong>what I doubt about it</strong>, and <strong>what it means for the design</strong>.</p>
 
       <div class="source-grid">
         <article class="source">
@@ -143,8 +149,11 @@
 
     <!-- Prototype and reference images -->
     <section aria-labelledby="images-h">
-      <h2 id="images-h">Prototype and reference images</h2>
-      <p class="section-intro">Screens from my Pathways prototype, built in Figma Make. Pathways starts from one song and branches outward.</p>
+      <header class="section-head">
+        <p class="eyebrow">Prototype and reference images</p>
+        <h2 id="images-h">One song. Endless directions.</h2>
+      </header>
+      <p class="lead">Screens from my <strong>Pathways prototype</strong>, built in Figma Make. Pathways <strong>starts from one song and branches outward</strong>.</p>
 
       <div class="gallery">
         <figure>
@@ -175,10 +184,13 @@
 
     <!-- Notes and experiment log -->
     <section aria-labelledby="log-h">
-      <h2 id="log-h">Notes and experiment log</h2>
-      <p class="section-intro">Oldest first.</p>
+      <header class="section-head">
+        <p class="eyebrow">Notes and experiment log</p>
+        <h2 id="log-h">How I got here.</h2>
+      </header>
+      <p class="lead">Four entries, oldest first.</p>
 
-      <ol class="timeline">
+      <ol class="timeline" role="list">
         <li>
           <p class="entry-date"><time datetime="2026-11-05">November 5, 2026</time></p>
           <h3>Info Interaction #1: Spotify&#8217;s announcement</h3>
@@ -224,8 +236,11 @@
 
     <!-- Next moves -->
     <section aria-labelledby="next-h">
-      <h2 id="next-h">Next moves</h2>
-      <ul class="next-list">
+      <header class="section-head">
+        <p class="eyebrow">Next moves</p>
+        <h2 id="next-h">What I test next.</h2>
+      </header>
+      <ul class="next-list" role="list">
         <li>Test Spotify&#8217;s Prompted Playlist myself with &#8220;reflective but not sad&#8221; and screenshot the results.</li>
         <li>Sketch two correction flows for a mismatched result and ask classmates which is clearer.</li>
         <li>Ask in interviews whether people actually feel stuck in their recommendations.</li>
@@ -237,16 +252,27 @@
 
     <!-- Workspace links -->
     <section aria-labelledby="links-h">
-      <h2 id="links-h">Workspace links</h2>
+      <header class="section-head">
+        <p class="eyebrow">Workspace links</p>
+        <h2 id="links-h">Where the work lives.</h2>
+      </header>
       <dl class="links">
-        <dt>GitHub</dt>
-        <dd><a href="https://github.com/SawyerJNIchols/github-startup">github.com/SawyerJNIchols/github-startup</a></dd>
-        <dt>Milanote</dt>
-        <dd><a href="https://app.milanote.com/1XlMs31CVN5B0d?p=g2F8YcAKFkc">Research notes and Command Center board</a></dd>
-        <dt>Figma</dt>
-        <dd><a href="https://www.figma.com/proto/nGzedmD7clTyQUywixN0hU/Applied-AI?node-id=0-1&amp;t=LkWlWBEeCLACmQcU-1">Pathways prototype</a>, built in Figma Make</dd>
-        <dt>AI tools used</dt>
-        <dd>Claude for prompting, Perplexity for source questions and summaries, Figma Make for the prototype.</dd>
+        <div>
+          <dt>GitHub</dt>
+          <dd><a href="https://github.com/SawyerJNIchols/github-startup">github.com/SawyerJNIchols/github-startup</a></dd>
+        </div>
+        <div>
+          <dt>Milanote</dt>
+          <dd><a href="https://app.milanote.com/1XlMs31CVN5B0d?p=g2F8YcAKFkc">Research notes and Command Center board</a></dd>
+        </div>
+        <div>
+          <dt>Figma</dt>
+          <dd><a href="https://www.figma.com/proto/nGzedmD7clTyQUywixN0hU/Applied-AI?node-id=0-1&amp;t=LkWlWBEeCLACmQcU-1">Pathways prototype in Figma Make</a></dd>
+        </div>
+        <div>
+          <dt>AI tools used</dt>
+          <dd>Claude for prompting, Perplexity for source questions and summaries, Figma Make for the prototype.</dd>
+        </div>
       </dl>
     </section>
 
