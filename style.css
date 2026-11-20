@@ -134,8 +134,9 @@ a:focus-visible {
   color: var(--muted);
 }
 
-/* Island nav: a frosted pill fixed to the bottom of the screen.
-   The nav is the anchor; the list inside it is the pill that moves. */
+/* Island nav: a black pill fixed to the bottom of the screen.
+   .island is the anchor that rises and stretches, .nav-list is the pill
+   that widens, and the links inside materialise last. */
 
 .island {
   position: fixed;
@@ -144,21 +145,21 @@ a:focus-visible {
   z-index: 20;
   max-width: calc(100vw - 1.5rem);
   translate: -50% 0;
+  transform-origin: 50% 100%;
 }
 
 .nav-list {
   display: flex;
+  justify-content: center;
   gap: 0.15rem;
   margin: 0;
   padding: 0.4rem;
   list-style: none;
   overflow-x: auto;
-  background: rgba(44, 44, 46, 0.78);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
-  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.7);
   scrollbar-width: none;
 }
 
@@ -172,12 +173,13 @@ a:focus-visible {
   border-radius: 999px;
   color: var(--text);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
 }
 
 .nav-list a:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -571,24 +573,64 @@ figcaption {
   }
 }
 
-@keyframes island-pop {
+/* Island, part 1: a droplet shoots up from below the screen, stretched
+   tall, lands with a squash, then stretches wide as it opens and settles. */
+@keyframes island-rise {
   0% {
-    translate: 0 220%;
-    scale: 0.45;
-    opacity: 0;
+    translate: -50% 210%;
+    scale: 0.5 0.5;
   }
-  35% {
-    opacity: 1;
+  22% {
+    translate: -50% -24%;
+    scale: 0.88 1.16;
   }
-  70% {
-    translate: 0 -14%;
-    scale: 1.06;
-    opacity: 1;
+  36% {
+    translate: -50% 5%;
+    scale: 1.12 0.88;
+  }
+  48% {
+    translate: -50% 0;
+    scale: 1 1;
+  }
+  74% {
+    translate: -50% 0;
+    scale: 1.04 0.95;
+  }
+  88% {
+    translate: -50% 0;
+    scale: 0.988 1.016;
   }
   100% {
-    translate: 0 0;
-    scale: 1;
+    translate: -50% 0;
+    scale: 1 1;
+  }
+}
+
+/* Island, part 2: the pill opens from a round droplet to its full width */
+@keyframes island-open {
+  0%,
+  40% {
+    max-width: 3.35rem;
+  }
+  80%,
+  100% {
+    max-width: 42rem;
+  }
+}
+
+/* Island, part 3: the labels come into focus once the pill has opened */
+@keyframes island-labels {
+  0%,
+  54% {
+    opacity: 0;
+    filter: blur(8px);
+    scale: 0.8;
+  }
+  90%,
+  100% {
     opacity: 1;
+    filter: blur(0);
+    scale: 1;
   }
 }
 
@@ -680,17 +722,42 @@ figcaption {
       animation-range: entry 180px entry 440px;
     }
 
-    /* Island: hidden at the top of the page. It pops up, with a small
-       overshoot, across a short stretch of scrolling and drops away again
-       when you scroll back to the top. */
-    .nav-list {
-      animation: island-pop linear both;
+    /* Island: hidden below the screen at the top of the page. Across a
+       short stretch of scrolling it rises as a droplet, opens into the pill
+       and brings its labels into focus, and reverses when you scroll back. */
+    .island {
+      animation: island-rise linear both;
       animation-timeline: scroll(root block);
-      animation-range: 150px 290px;
+      animation-range: 150px 380px;
     }
 
-    /* Keyboard users always get the island as soon as focus lands in it */
-    .island:focus-within .nav-list {
+    .nav-list {
+      animation: island-open linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 150px 380px;
+    }
+
+    /* Labels appear from the middle outwards */
+    .nav-list li {
+      animation: island-labels linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 150px 380px;
+    }
+
+    .nav-list li:nth-child(2),
+    .nav-list li:nth-child(5) {
+      animation-range: 162px 392px;
+    }
+
+    .nav-list li:nth-child(1),
+    .nav-list li:nth-child(6) {
+      animation-range: 174px 404px;
+    }
+
+    /* Keyboard users always get the whole island as soon as focus lands in it */
+    .island:focus-within,
+    .island:focus-within .nav-list,
+    .island:focus-within .nav-list li {
       animation: none;
     }
 
@@ -722,6 +789,12 @@ figcaption {
 }
 
 @media (max-width: 760px) {
+  /* On a phone the labels are wider than the pill and scroll sideways,
+     so they start from the left edge instead of the centre */
+  .nav-list {
+    justify-content: flex-start;
+  }
+
   .nav-list a {
     padding: 0.5rem 0.75rem;
     font-size: 0.85rem;
