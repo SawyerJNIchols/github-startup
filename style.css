@@ -112,9 +112,10 @@ a:focus-visible {
 }
 
 /* Aurora: soft purple and deep-blue light drifting behind the title.
-   Two oversized layers each carry two blobs of colour and turn slowly on
-   loops of different lengths, so the pattern never visibly repeats. The
-   mask fades the light to black before it reaches the next section. */
+   Two oversized layers each carry two blobs of colour. The layers circle
+   in opposite directions while drifting, swelling and pulsing on loops of
+   different lengths, so the light keeps moving and never visibly repeats.
+   The mask fades it to black before it reaches the next section. */
 .aurora {
   position: absolute;
   inset: 0;
@@ -134,14 +135,14 @@ a:focus-visible {
 
 .aurora::before {
   background:
-    radial-gradient(36% 40% at 66% 36%, rgba(124, 77, 255, 0.55), transparent 100%),
-    radial-gradient(28% 32% at 34% 58%, rgba(52, 70, 235, 0.34), transparent 100%);
+    radial-gradient(36% 40% at 66% 36%, rgba(124, 77, 255, 0.68), transparent 100%),
+    radial-gradient(28% 32% at 34% 58%, rgba(52, 70, 235, 0.48), transparent 100%);
 }
 
 .aurora::after {
   background:
-    radial-gradient(30% 34% at 56% 30%, rgba(178, 92, 255, 0.36), transparent 100%),
-    radial-gradient(26% 30% at 76% 56%, rgba(84, 44, 205, 0.42), transparent 100%);
+    radial-gradient(30% 34% at 56% 30%, rgba(178, 92, 255, 0.5), transparent 100%),
+    radial-gradient(26% 30% at 76% 56%, rgba(84, 44, 205, 0.56), transparent 100%);
 }
 
 .site-header h1 {
@@ -658,29 +659,41 @@ figcaption {
    scroll-linked ones, where the browser supports scroll-driven animation,
    so nothing is ever left hidden. */
 
-@keyframes aurora-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
-  }
-  33% {
-    transform: translate3d(-7%, 5%, 0) rotate(24deg) scale(1.18);
-  }
-  66% {
-    transform: translate3d(6%, -4%, 0) rotate(-16deg) scale(0.92);
+/* Aurora: a steady turn, plus a drift and a pulse layered on top */
+@keyframes aurora-spin {
+  to {
+    rotate: 360deg;
   }
 }
 
-@keyframes aurora-b {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1.05);
+@keyframes aurora-drift-a {
+  from {
+    translate: -8% -5%;
+    scale: 0.9;
   }
-  40% {
-    transform: translate3d(8%, 6%, 0) rotate(-28deg) scale(0.9);
+  to {
+    translate: 9% 6%;
+    scale: 1.3;
   }
-  75% {
-    transform: translate3d(-6%, -5%, 0) rotate(20deg) scale(1.2);
+}
+
+@keyframes aurora-drift-b {
+  from {
+    translate: 7% -6%;
+    scale: 1.25;
+  }
+  to {
+    translate: -9% 5%;
+    scale: 0.88;
+  }
+}
+
+@keyframes aurora-pulse {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -817,11 +830,17 @@ figcaption {
 @media (prefers-reduced-motion: no-preference) {
   /* The aurora drifts continuously; with reduced motion it stays still */
   .aurora::before {
-    animation: aurora-a 19s ease-in-out infinite;
+    animation:
+      aurora-spin 16s linear infinite,
+      aurora-drift-a 6s ease-in-out infinite alternate,
+      aurora-pulse 5s ease-in-out infinite alternate;
   }
 
   .aurora::after {
-    animation: aurora-b 29s ease-in-out infinite;
+    animation:
+      aurora-spin 22s linear infinite reverse,
+      aurora-drift-b 8s ease-in-out infinite alternate,
+      aurora-pulse 7s ease-in-out infinite alternate;
   }
 
   /* Hero text eases in once when the page loads */
