@@ -15,6 +15,8 @@
     <h1>Describe It, Discover It</h1>
     <p class="tagline">Conversational music discovery: describe a mood or a moment, then steer what the AI gives you back.</p>
     <p class="byline">By Sawyer Nichols</p>
+    <!-- Decorative moving gradient behind the title -->
+    <div class="aurora" aria-hidden="true"></div>
   </header>
 
   <!-- Floating section nav: rises from the bottom of the screen after you scroll -->
@@ -67,15 +69,23 @@
     </section>
 
     <!-- Sources and notes -->
-    <section aria-labelledby="sources-h">
+    <section class="sources" aria-labelledby="sources-h">
       <header class="section-head">
         <p class="eyebrow">Sources and notes</p>
         <h2 id="sources-h">Five sources. Read skeptically.</h2>
       </header>
       <p class="lead">Each one has <strong>what I found</strong>, <strong>what I doubt about it</strong>, and <strong>what it means for the design</strong>.</p>
 
-      <div class="source-grid">
-        <article class="source">
+      <nav class="carousel-dots" aria-label="Jump to a source">
+        <a href="#source-1" aria-label="Source 1: Spotify announcement"></a>
+        <a href="#source-2" aria-label="Source 2: YouTube Music Ask Music help page"></a>
+        <a href="#source-3" aria-label="Source 3: Haven&#8217;t I Just Listened to This? research paper"></a>
+        <a href="#source-4" aria-label="Source 4: User-Driven Fairness research paper"></a>
+        <a href="#source-5" aria-label="Source 5: ZDNET Apple Music review"></a>
+      </nav>
+
+      <div class="source-grid" role="region" aria-label="Sources carousel. Scroll sideways or use the dots above to move between the five sources." tabindex="0">
+        <article class="source" id="source-1">
           <p class="pill">Company announcement</p>
           <h3><a href="https://newsroom.spotify.com/2025-12-10/spotify-prompted-playlists-algorithm-gustav-soderstrom">&#8220;You&#8217;re in Control: Spotify Lets You Steer the Algorithm&#8221;</a></h3>
           <p class="source-meta">Gustav S&#246;derstr&#246;m, Spotify Newsroom &#183; December 10, 2025</p>
@@ -89,7 +99,7 @@
           </dl>
         </article>
 
-        <article class="source">
+        <article class="source" id="source-2">
           <p class="pill">Help page</p>
           <h3><a href="https://support.google.com/youtubemusic/answer/17090260?hl=en">&#8220;Ask Music for music and podcasts&#8221;</a></h3>
           <p class="source-meta">YouTube Music Help</p>
@@ -103,7 +113,7 @@
           </dl>
         </article>
 
-        <article class="source">
+        <article class="source" id="source-3">
           <p class="pill">Research paper</p>
           <h3><a href="https://doi.org/10.1145/3511047.3536409">&#8220;Haven&#8217;t I Just Listened to This?: Exploring Diversity in Music Recommendations&#8221;</a></h3>
           <p class="source-meta">Antonela Tommasel, Juan Manuel Rodriguez, and Daniela Godoy &#183; UMAP &#8217;22</p>
@@ -117,7 +127,7 @@
           </dl>
         </article>
 
-        <article class="source">
+        <article class="source" id="source-4">
           <p class="pill">Research paper</p>
           <h3><a href="https://ceur-ws.org/Vol-4045/paper7.pdf">&#8220;User-Driven Fairness in Music Recommendations&#8221;</a> <span class="file-type">(PDF)</span></h3>
           <p class="source-meta">Shah Noor Khan, Jesse Nieuwkoop, and Judith Masthoff &#183; MuRS 2025, Utrecht University</p>
@@ -131,7 +141,7 @@
           </dl>
         </article>
 
-        <article class="source">
+        <article class="source" id="source-5">
           <p class="pill">Hands-on review</p>
           <h3><a href="https://www.zdnet.com/home-and-office/home-entertainment/apple-music-playlist-playground/">&#8220;I let Apple Music&#8217;s new AI tool curate my playlists for 24 hours &#8211; and discovered new hits&#8221;</a></h3>
           <p class="source-meta">Jada Jones, ZDNET</p>

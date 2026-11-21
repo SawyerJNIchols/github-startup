@@ -5,7 +5,6 @@
   --muted: #a1a1a6;
   --hairline: rgba(255, 255, 255, 0.16);
   --link: #2997ff;
-  --glow: rgba(124, 77, 255, 0.3);
   --radius: 28px;
   --content: 1260px;
   --gutter: max(1.5rem, calc(50% - var(--content) / 2));
@@ -106,9 +105,43 @@ a:focus-visible {
   justify-content: flex-end;
   min-height: min(88vh, 860px);
   padding: 6rem var(--gutter) clamp(3rem, 7vw, 5.5rem);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--black);
+}
+
+/* Aurora: soft purple and deep-blue light drifting behind the title.
+   Two oversized layers each carry two blobs of colour and turn slowly on
+   loops of different lengths, so the pattern never visibly repeats. The
+   mask fades the light to black before it reaches the next section. */
+.aurora {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000000 0%, #000000 40%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000000 0%, #000000 40%, transparent 96%);
+}
+
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+}
+
+.aurora::before {
   background:
-    radial-gradient(ellipse 75% 70% at 72% 18%, var(--glow), transparent 70%),
-    var(--black);
+    radial-gradient(36% 40% at 66% 36%, rgba(124, 77, 255, 0.55), transparent 100%),
+    radial-gradient(28% 32% at 34% 58%, rgba(52, 70, 235, 0.34), transparent 100%);
+}
+
+.aurora::after {
+  background:
+    radial-gradient(30% 34% at 56% 30%, rgba(178, 92, 255, 0.36), transparent 100%),
+    radial-gradient(26% 30% at 76% 56%, rgba(84, 44, 205, 0.42), transparent 100%);
 }
 
 .site-header h1 {
@@ -312,10 +345,73 @@ dd {
 
 /* Tiles: borderless, large radius */
 
+/* Sources carousel: one row of cards that scrolls sideways and snaps.
+   It runs edge to edge, so cards slide in from beyond the page margin
+   while the first card still lines up with the rest of the content. */
 .source-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+  --bleed: max(1.5rem, calc((100vw - var(--content)) / 2));
+  display: flex;
   gap: 1.25rem;
+  margin-inline: calc(-1 * var(--bleed));
+  padding: 0.5rem var(--bleed);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--bleed);
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.source-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.source-grid:focus-visible {
+  outline: 3px solid var(--link);
+  outline-offset: -3px;
+  border-radius: var(--radius);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .source-grid {
+    scroll-behavior: auto;
+  }
+}
+
+/* Jump dots above the carousel. Each one is a link to its card. They sit
+   above the cards so they are still on screen after a jump. */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.15rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--tile);
+  border-radius: 999px;
+}
+
+.carousel-dots a {
+  display: grid;
+  place-items: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+}
+
+.carousel-dots a::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.carousel-dots a:hover::before {
+  background: var(--text);
 }
 
 .source,
@@ -326,7 +422,11 @@ figure {
 }
 
 .source {
+  flex: 0 0 min(26rem, 82vw);
   padding: clamp(1.5rem, 3vw, 2.25rem);
+  scroll-snap-align: start;
+  /* When a dot jumps to a card, stop with the dots still showing above it */
+  scroll-margin-top: 6.5rem;
 }
 
 .pill {
@@ -558,6 +658,32 @@ figcaption {
    scroll-linked ones, where the browser supports scroll-driven animation,
    so nothing is ever left hidden. */
 
+@keyframes aurora-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate3d(-7%, 5%, 0) rotate(24deg) scale(1.18);
+  }
+  66% {
+    transform: translate3d(6%, -4%, 0) rotate(-16deg) scale(0.92);
+  }
+}
+
+@keyframes aurora-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1.05);
+  }
+  40% {
+    transform: translate3d(8%, 6%, 0) rotate(-28deg) scale(0.9);
+  }
+  75% {
+    transform: translate3d(-6%, -5%, 0) rotate(20deg) scale(1.2);
+  }
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -634,6 +760,35 @@ figcaption {
   }
 }
 
+/* Carousel: a card is dim and slightly small at either edge of the row
+   and full strength while it is properly in view */
+@keyframes card-focus {
+  0%,
+  100% {
+    opacity: 0.3;
+    scale: 0.94;
+  }
+  22%,
+  78% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* Carousel: a dot stretches and brightens while its card is in view */
+@keyframes dot-on {
+  0%,
+  100% {
+    width: 0.5rem;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  14%,
+  86% {
+    width: 1.5rem;
+    background: #f5f5f7;
+  }
+}
+
 @keyframes draw-line {
   from {
     scale: 1 0;
@@ -660,6 +815,15 @@ figcaption {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* The aurora drifts continuously; with reduced motion it stays still */
+  .aurora::before {
+    animation: aurora-a 19s ease-in-out infinite;
+  }
+
+  .aurora::after {
+    animation: aurora-b 29s ease-in-out infinite;
+  }
+
   /* Hero text eases in once when the page loads */
   .site-header > * {
     animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -681,7 +845,9 @@ figcaption {
     /* Headlines and lead copy rise into place as they enter the screen */
     .section-head,
     .lead,
-    .sub-head {
+    .sub-head,
+    .source-grid,
+    .carousel-dots {
       animation: rise linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 260px;
@@ -690,7 +856,6 @@ figcaption {
     /* Columns, tiles and images follow, staggered across each row */
     .fact,
     .outcomes li,
-    .source,
     figure,
     .next-list li,
     .links div {
@@ -701,7 +866,6 @@ figcaption {
 
     .fact:nth-child(4n + 2),
     .outcomes li:nth-child(3n + 2),
-    .source:nth-child(3n + 2),
     figure:nth-child(3n + 2),
     .next-list li:nth-child(3n + 2),
     .links div:nth-child(4n + 2) {
@@ -710,7 +874,6 @@ figcaption {
 
     .fact:nth-child(4n + 3),
     .outcomes li:nth-child(3n),
-    .source:nth-child(3n),
     figure:nth-child(3n),
     .next-list li:nth-child(3n),
     .links div:nth-child(4n + 3) {
@@ -720,6 +883,12 @@ figcaption {
     .fact:nth-child(4n),
     .links div:nth-child(4n) {
       animation-range: entry 180px entry 440px;
+    }
+
+    /* Carousel cards fade and grow as they slide into the row */
+    .source {
+      animation: card-focus linear both;
+      animation-timeline: view(inline);
     }
 
     /* Island: hidden below the screen at the top of the page. Across a
@@ -785,6 +954,33 @@ figcaption {
       animation-timeline: --entry;
       animation-range: entry 0% entry 160px;
     }
+  }
+}
+
+/* Each card publishes how far it is across the row, and its dot reads that.
+   Browsers that cannot share a timeline this way just show plain dots. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (timeline-scope: --a) and (animation-timeline: view()) {
+    .sources {
+      timeline-scope: --source-1, --source-2, --source-3, --source-4, --source-5;
+    }
+
+    #source-1 { view-timeline: --source-1 inline; }
+    #source-2 { view-timeline: --source-2 inline; }
+    #source-3 { view-timeline: --source-3 inline; }
+    #source-4 { view-timeline: --source-4 inline; }
+    #source-5 { view-timeline: --source-5 inline; }
+
+    .carousel-dots a::before {
+      animation: dot-on linear both;
+      animation-range: entry 45% exit 55%;
+    }
+
+    .carousel-dots a:nth-child(1)::before { animation-timeline: --source-1; }
+    .carousel-dots a:nth-child(2)::before { animation-timeline: --source-2; }
+    .carousel-dots a:nth-child(3)::before { animation-timeline: --source-3; }
+    .carousel-dots a:nth-child(4)::before { animation-timeline: --source-4; }
+    .carousel-dots a:nth-child(5)::before { animation-timeline: --source-5; }
   }
 }
 
